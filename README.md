@@ -2,6 +2,8 @@
 
 ## Introduction to Sockets
 
+### server sided
+
 ```bash
 socket()
 ```
@@ -37,3 +39,40 @@ while True:
     do_something_with(conn_fd)
     close(conn_fd)
 ```
+
+- pseudo-code that explains the typical workflow of a server
+
+```bash
+read()
+```
+
+- receives data from a TCP connection
+
+```bash
+write()
+```
+
+- sends data
+
+```bash
+close()
+```
+
+- destroys the resource referred by the fd and recycles the fd number
+
+### client sided
+
+```bash
+connect()
+```
+
+- takes a socket fd and address and makes a TCP connection to that address
+
+```pseudo-code
+fd = socket()
+connect(fd, address)
+do_something_with(fd)
+close(fd)
+```
+
+- pseudo-code for the client
