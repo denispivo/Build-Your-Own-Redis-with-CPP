@@ -84,7 +84,7 @@ close(fd)
 
 - pseudo-code for the client
 
-#### **[back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)**
+#### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
 
 ## Hello Server/Client
 
@@ -212,3 +212,5 @@ server says: world
 ```
 
 - run **./server** in a window and then run **./client** in another window
+
+#### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
