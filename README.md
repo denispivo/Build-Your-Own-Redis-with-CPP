@@ -96,3 +96,23 @@ setsockopt()
 - this particular call enables the **SO_REUSEADDR** option
     - without this option, the server won’t be able to bind to the same address if restarted
     - **SO_REUSEADDR** tries to use a sockt, but if it´s already used, it will use it anyway, if we don´t use **SO_REUSEADDR**, we will get an socket already in use error
+
+```cpp
+// bind, this is the syntax that deals with IPv4 addresses
+struct sockaddr_in addr = {};
+addr.sin_family = AF_INET;
+addr.sin_port = ntohs(1234);
+addr.sin_addr.s_addr = ntohl(0);    // wildcard address 0.0.0.0
+int rv = bind(fd, (const sockaddr *)&addr, sizeof(addr));
+if (rv) {
+    die("bind()");
+}
+
+// listen
+rv = listen(fd, SOMAXCONN);
+if (rv) {
+    die("listen()");
+}
+```
+
+- the next step is the **bind()** and **listen()**, we’ll bind on the wildcard address **0.0.0.0:1234**
