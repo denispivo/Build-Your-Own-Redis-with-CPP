@@ -1,16 +1,10 @@
 CXX       := /usr/bin/g++
-CXX_FLAGS := -std=c++17 -Wall -Wextra -Wpedantic -fdiagnostics-color=always -g
+CXX_FLAGS := -std=c++17 -Wall -Wextra -Wpedantic -fdiagnostics-color=always -O2 -g
 
-SRC     := src
-INCLUDE := include
+main.exe: 03_client.cpp 03_server.cpp
+	$(CXX) $(CXX_FLAGS) $^ -o $@
 
-all: clean main.exe
-
-main.exe: main.cpp $(SRC)/*.cpp
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@
-
-run: all
-	./main.exe
+run: ./03_server.exe ./03_client.exe
 
 clean:
 	rm -f *.exe
