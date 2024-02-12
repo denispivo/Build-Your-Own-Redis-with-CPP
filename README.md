@@ -83,6 +83,8 @@ close(fd)
 - **AF_INET** is for IPv4, use **AF_INET6** for IPv6 or dual-stack socket
 - **SOCK_STREAM** is for TCP
 
+### server sided
+
 ```new-syscall
 int val = 1;
 setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
@@ -116,3 +118,86 @@ if (rv) {
 ```
 
 - the next step is the **bind()** and **listen()**, we’ll bind on the wildcard address **0.0.0.0:1234**
+
+```cpp
+while (true) {
+    // accept
+    struct sockaddr_in client_addr = {};
+    socklen_t socklen = sizeof(client_addr);
+    int connfd = accept(fd, (struct sockaddr *)&client_addr, &socklen);
+    if (connfd < 0) {
+        continue;   // error
+    }
+
+    do_something(connfd);
+    close(connfd);
+}
+```
+
+- loop for each connection and do something with them
+
+```cpp
+static void do_something(int connfd) {
+    char rbuf[64] = {};
+    ssize_t n = read(connfd, rbuf, sizeof(rbuf) - 1);
+    if (n < 0) {
+        msg("read() error");
+        return;
+    }
+    printf("client says: %s\n", rbuf);
+
+    char wbuf[] = "world";
+    write(connfd, wbuf, strlen(wbuf));
+}
+```
+
+- the **do_something()** function is simply read and write
+- note that the **read()** and **write()** call returns the number of read or written bytes
+
+### client sided
+
+```cpp
+int fd = socket(AF_INET, SOCK_STREAM, 0);
+if (fd < 0) {
+    die("socket()");
+}
+
+struct sockaddr_in addr = {};
+addr.sin_family = AF_INET;
+addr.sin_port = ntohs(1234);
+addr.sin_addr.s_addr = ntohl(INADDR_LOOPBACK);  // 127.0.0.1
+int rv = connect(fd, (const struct sockaddr *)&addr, sizeof(addr));
+if (rv) {
+    die("connect");
+}
+
+char msg[] = "hello";
+write(fd, msg, strlen(msg));
+
+char rbuf[64] = {};
+ssize_t n = read(fd, rbuf, sizeof(rbuf) - 1);
+if (n < 0) {
+    die("read");
+}
+printf("server says: %s\n", rbuf);
+close(fd);
+```
+
+```g++
+g++ -Wall -Wextra -O2 -g 03_server.cpp -o server
+g++ -Wall -Wextra -O2 -g 03_client.cpp -o client
+```
+
+- compile the programs with this command lines
+
+```g++
+$ ./server
+client says: hello
+```
+
+```g++
+$ ./client
+server says: world
+```
+
+- run **./server** in a window and then run **./client** in another window
