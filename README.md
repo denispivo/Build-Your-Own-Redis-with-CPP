@@ -27,3 +27,13 @@ accept()
 
 - takes a listening fd, when a client makes a connection to the listening address
 - returns an fd that represents the connection socket
+
+```pseudo-code
+fd = socket()
+bind(fd, address)
+listen(fd)
+while True:
+    conn_fd = accept(fd)
+    do_something_with(conn_fd)
+    close(conn_fd)
+```
