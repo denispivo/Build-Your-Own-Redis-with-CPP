@@ -76,3 +76,21 @@ close(fd)
 ```
 
 - pseudo-code for the client
+
+## Hello Server/Client
+
+- obtain a socket fd like this: int fd = socket(AF_INET, SOCK_STREAM, 0);
+- AF_INET is for IPv4, use AF_INET6 for IPv6 or dual-stack socket
+- SOCK_STREAM is for TCP
+
+```new-syscall
+int val = 1;
+setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
+```
+
+```bash
+setsockopt()
+```
+
+- is used to configure various aspects of a socket
+- particular call enables the ==SO_REUSEADDR== option
