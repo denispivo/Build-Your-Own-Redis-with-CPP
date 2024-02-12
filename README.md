@@ -93,4 +93,4 @@ setsockopt()
 ```
 
 - is used to configure various aspects of a socket
-- particular call enables the <mark>SO_REUSEADDR</mark> option
+- particular call enables the <span \textcolor{10}{10}>SO_REUSEADDR</span> option
