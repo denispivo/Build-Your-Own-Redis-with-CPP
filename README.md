@@ -84,6 +84,8 @@ close(fd)
 
 - pseudo-code for the client
 
+#### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
+
 ## Hello Server/Client
 
 - obtain a socket fd like this: **int fd = socket(AF_INET, SOCK_STREAM, 0);**
