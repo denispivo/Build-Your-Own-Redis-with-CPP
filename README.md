@@ -79,9 +79,9 @@ close(fd)
 
 ## Hello Server/Client
 
-- obtain a socket fd like this: int fd = socket(AF_INET, SOCK_STREAM, 0);
-- AF_INET is for IPv4, use AF_INET6 for IPv6 or dual-stack socket
-- SOCK_STREAM is for TCP
+- obtain a socket fd like this: **int fd = socket(AF_INET, SOCK_STREAM, 0);**
+- **AF_INET** is for IPv4, use **AF_INET6** for IPv6 or dual-stack socket
+- **SOCK_STREAM** is for TCP
 
 ```new-syscall
 int val = 1;
@@ -93,4 +93,6 @@ setsockopt()
 ```
 
 - is used to configure various aspects of a socket
-- particular call enables the **SO_REUSEADDR** option
+- this particular call enables the **SO_REUSEADDR** option
+    - without this option, the server won’t be able to bind to the same address if restarted
+    - **SO_REUSEADDR** tries to use a sockt, but if it´s already used, it will use it anyway, if we don´t use **SO_REUSEADDR**, we will get an socket already in use error
