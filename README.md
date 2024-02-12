@@ -7,7 +7,7 @@ socket()
 ```
 
 - return an fd
--> an fd is an integer that refers to something in the Linus kernel, like a TCP connection, a disk file, a listening port, or some other resources, etc.
+-> fd is an integer that refers to something in the Linux kernel, like a TCP connection, a disk file, a listening port, or some other resources, etc.
 
 ```bash
 bind()
@@ -18,3 +18,12 @@ bind()
 ```bash
 listen()
 ```
+
+- enables to accept connections to the given address
+
+```bash
+accept()
+```
+
+- takes a listening fd, when a client makes a connection to the listening address
+- returns an fd that represents the connection socket
