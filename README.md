@@ -2,6 +2,6 @@
 
 ## [Introduction to Sockets](https://build-your-own.org/redis/02_intro_sockets)
 
-´´´bash
+'''bash
 socket()
-´´´
+'''
