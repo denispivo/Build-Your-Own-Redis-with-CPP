@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <stdint.h>
-//#include <string>
-//#include <unistd.h>
+#include <stdint.h>
+#include <string.h>
+#include <unistd.h>
 #include <errno.h>
-//#include <arpa/inet.h>
+#include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/ip.h>
 
-static void error(const char *msg) {
+#include <cstdlib>
+
+static void error(const char* msg) {
 
     // errno is a preprocessor macro used for error indication
     int err = errno;
@@ -28,6 +30,12 @@ int main() {
     addr.sin_family = AF_INET;
     addr.sin_port = 1234;
     addr.sin_addr.s_addr = INADDR_LOOPBACK; // 127.0.0.1
+    int rv = connect(fd, (const struct sockaddr*)&addr, sizeof(addr));
+    if (rv) {
+
+        error("connect");
+
+    }
 
     return 0;
 
