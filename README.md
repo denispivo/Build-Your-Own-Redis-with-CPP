@@ -451,5 +451,51 @@ server says: world
 server says: world
 ```
 
+### More on Protocol Design
+
+There are many decisions to be made when designing protocols. You can learn the tradeoffs by looking at existing protocols.
+
+#### Text vs. Binary
+
+The first decision in protocol design is text vs binary. Text protocols have the advantage of being human-readable, making debugging easier. A notable example is the HTTP protocol (not the newer one).
+
+A disadvantage of text protocols is their complexity, even the simplest text protocol requires more work and is more error-prone to parse. You can try to compare the real Redis protocol with the protocol of this book.
+
+Why are text protocols harder to parse? Because they consist of variable-length strings, the text parsing code involves a lot of length calculations, bound checks, and decisions. Let’s say you want to parse an integer in decimal text “1234”, for every byte, you have to check for the end of the buffer and whether the integer has ended. This is in contrast to the simplicity of a fixed-width binary integer.
+
+The above example leads to a protocol design tip: avoid unnecessary variable-length components. The fewer of them, the less parsing, and the fewer of security bugs. Let’s say you want to include a string in your protocol, consider whether a fixed-length string is acceptable, or whether the string is needed at all.
+
+#### Streaming Data
+
+Our protocol includes the length of the message at the beginning. However, real-world protocols often use less obvious ways to indicate the end of the message. Some applications support “streaming” data continuously without knowing the full length of the output. A good example is the “Chunked Transfer Encoding” from the HTTP protocol.
+
+Chunked encoding wraps incoming data into a message format that starts with the length of the message. The client receives a stream of messages, until a special message indicates the end of the stream.
+
+There is also an alternative but bad way to do this: Use a special character (delimiter) to indicate the end of the stream. The problem is that the payload data encoding can not contain the delimiter, you need some “escape” mechanism, which complicates things.
+
+### Further Considerations
+
+The protocol parsing code requires at least 2 read() syscalls per request. The number of syscalls can be reduced by using “buffered IO”. That is, read as much as you can into a buffer at once, then try to parse multiple requests from that buffer. Readers are encouraged to try this as an exercise as it may be helpful in understanding later chapters.
+
+There are some common beginner mistakes when designing or implementing protocols:
+
+```text
+Mistake 1: Not handling the return value of **read()** and **write()**.
+```
+
+These two functions can return fewer bytes than you expected, see the notes on the read_full helper. This mistake is also common with an event loop.
+
+```text
+Mistake 2: No way to indicate the end of the message.
+```
+
+People often believe that the read and write syscalls are “messages” instead of byte streams, resulting in an unparsable protocol. Early versions of HTTP also allow this flaw: an HTTP connection without the Content-Length header or chunked encoding cannot be used for multiple requests.
+
+```text
+Mistake 3: Unnecessary complexities.
+```
+
+See the section on the protocol design.
+
 #### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
 
