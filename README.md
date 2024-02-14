@@ -1,6 +1,6 @@
 # Build Your Own Redis with CPP
 
-[learned with / got information from this book](https://build-your-own.org/redis/)
+## learned with / got information from this [book](https://build-your-own.org/redis/)
 
 1. [Introduction to Sockets](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#introduction-to-sockets)
     - [server sided](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#server-sided)
