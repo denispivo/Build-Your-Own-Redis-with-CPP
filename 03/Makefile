@@ -1,5 +1,6 @@
 CXX       := /usr/bin/g++
-CXX_FLAGS := -std=c++17 -Wall -Wextra -Wpedantic -fdiagnostics-color=always -O2 -g
+CXX_FLAGS := -std=c++17 -Wall -Wextra -O2 -g
+#-Wpedantic -fdiagnostics-color=always
 
 all: client.exe server.exe
 
