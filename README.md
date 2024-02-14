@@ -224,11 +224,11 @@ server says: world
 
 Our server will be able to process multiple requests from a client, so we need to implement some sort of “protocol” to at least split requests apart from the TCP byte stream. The easiest way to split requests apart is to declare how long the request is at the beginning of the request.
 
-+-----+------+-----+------+--------
-
+´´´string
+"+-----+------+-----+------+--------
 | len | msg1 | len | msg2 | more...
-
-+-----+------+-----+------+--------
++-----+------+-----+------+--------"
+´´´
 
 #### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
 
