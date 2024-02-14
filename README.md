@@ -224,7 +224,7 @@ server says: world
 
 Our server will be able to process multiple requests from a client, so we need to implement some sort of “protocol” to at least split requests apart from the TCP byte stream. The easiest way to split requests apart is to declare how long the request is at the beginning of the request.
 
-´´´bash
+´´´pseudo-code
 +-----+------+-----+------+--------
 | len | msg1 | len | msg2 | more...
 +-----+------+-----+------+--------
