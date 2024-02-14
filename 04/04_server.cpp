@@ -8,6 +8,8 @@
 #include <sys/socket.h>
 //#include <netinet/ip.h>
 
+const size_t k_max_msg = 4096;
+
 static void error(const char* msg) {
 
     // errno is a preprocessor macro used for error indication
@@ -23,18 +25,10 @@ static void msg(const char* msg) {
 
 }
 
-static void do_something(int connfd) {
+static int32_t one_request(int connfd) {
 
-    char rbuf[64];
-    ssize_t n = read(connfd, rbuf, sizeof(rbuf) - 1);
-    if (n < 0) {
-        msg("read() error");
-        return;
-    }
-    printf("client says: %s\n", rbuf);
-
-    char msgbuf[] = "world";
-    write(connfd, msgbuf, strlen(msgbuf));
+    // 4 byte header
+    char rbuf[4 + k_max_msg + 1];
 
 }
 
@@ -73,11 +67,18 @@ int main() {
         socklen_t socklen = sizeof(client_addr);
         int connfd = accept(fd, (struct sockaddr*)&client_addr, &socklen);
         if (connfd < 0) {
-            error("accept()");
             continue;
         }
 
-        do_something(connfd);
+        while (true) {
+
+            int32_t err = one_request(connfd);
+            if (err) {
+                break;
+            }
+
+
+        }
         close(connfd);
     }
 
