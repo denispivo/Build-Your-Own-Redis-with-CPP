@@ -73,7 +73,6 @@ int main() {
         socklen_t socklen = sizeof(client_addr);
         int connfd = accept(fd, (struct sockaddr*)&client_addr, &socklen);
         if (connfd < 0) {
-            error("accept()");
             continue;
         }
 
