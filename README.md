@@ -213,6 +213,6 @@ server says: world
 
 - run **./server** in a window and then run **./client** in another window
 
-###### [finished task / client + server](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP/tree/master/03)
+#### [finished task / client + server](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP/tree/master/03)
 
 #### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
