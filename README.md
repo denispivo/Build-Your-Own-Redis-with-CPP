@@ -3,9 +3,12 @@
 1. [Introduction to Sockets](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#introduction-to-sockets)
     - [server sided](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#server-sided)
     - [client sided](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#client-sided)
+
 2. [Hello Server/Client](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#hello-serverclient)
     - [server sided](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#server-sided-1)
     - [client sided](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#client-sided-1)
+
+3. [Protocol Parsing](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#protocol-parsing)
 
 ## Introduction to Sockets
 
@@ -218,3 +221,8 @@ server says: world
 #### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
 
 ## Protocol Parsing
+
+
+
+#### [back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#build-your-own-redis-with-cpp)
+
