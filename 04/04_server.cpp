@@ -60,10 +60,10 @@ static int32_t one_request(int connfd) {
 
     uint32_t len = 0;
     memcpy(&len, rbuf, 4);
-    /* if (len > k_max_msg) {
+    if (len > k_max_msg) {
         msg("too long");
         return -1;
-    } */
+    }
 
     printf("rv = %s\n", rbuf);
     err = read_full(connfd, &rbuf[4], len);
