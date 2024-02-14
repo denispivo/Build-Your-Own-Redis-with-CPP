@@ -11,6 +11,13 @@
     - [client sided](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#client-sided-1)
 
 3. [Protocol Parsing](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#protocol-parsing)
+    - [Overview](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#overview)
+    - [IO Helpers](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#io-helpers)
+    - [The Parser](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#the-parser)
+    - [The Client](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#the-client)
+    - [Testing](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#testing)
+    - [More on Protocol Design](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#more-on-protocol-design)
+    - [Further Considerations](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#further-considerations)
 
 ## Introduction to Sockets
 
@@ -475,7 +482,7 @@ There is also an alternative but bad way to do this: Use a special character (de
 
 ### Further Considerations
 
-The protocol parsing code requires at least 2 read() syscalls per request. The number of syscalls can be reduced by using “buffered IO”. That is, read as much as you can into a buffer at once, then try to parse multiple requests from that buffer. Readers are encouraged to try this as an exercise as it may be helpful in understanding later chapters.
+The protocol parsing code requires at least 2 **read()** syscalls per request. The number of syscalls can be reduced by using “buffered IO”. That is, read as much as you can into a buffer at once, then try to parse multiple requests from that buffer. Readers are encouraged to try this as an exercise as it may be helpful in understanding later chapters.
 
 There are some common beginner mistakes when designing or implementing protocols:
 
@@ -483,13 +490,13 @@ There are some common beginner mistakes when designing or implementing protocols
 Mistake 1: Not handling the return value of **read()** and **write()**.
 ```
 
-These two functions can return fewer bytes than you expected, see the notes on the read_full helper. This mistake is also common with an event loop.
+These two functions can return fewer bytes than you expected, see the notes on the **read_full()** helper. This mistake is also common with an event loop.
 
 ```text
 Mistake 2: No way to indicate the end of the message.
 ```
 
-People often believe that the read and write syscalls are “messages” instead of byte streams, resulting in an unparsable protocol. Early versions of HTTP also allow this flaw: an HTTP connection without the Content-Length header or chunked encoding cannot be used for multiple requests.
+People often believe that the **read()** and **write()** syscalls are “messages” instead of byte streams, resulting in an unparsable protocol. Early versions of HTTP also allow this flaw: an HTTP connection without the **Content-Length** header or chunked encoding cannot be used for multiple requests.
 
 ```text
 Mistake 3: Unnecessary complexities.
