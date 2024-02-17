@@ -42,7 +42,7 @@ bottom
 
 Applications Refer to Sockets
 
-- on Linux a handle is called *file desciptor* (fd), which is an integer that is unique to the process
+- on Linux a handle is called ***file desciptor*** (fd), which is an integer that is unique to the process
 
 ```syscall
 socket()
@@ -54,3 +54,25 @@ socket()
 
 ### Listening Socket & Connection Socket
 
+A TCP server listens on a particular address (IP + port) and accepts client connections from that address. The listening address is also represented by a socket fd. And when you accept a new client connection, you get the socket fd of the TCP connection.
+
+2 types of socket handles:
+1. Listening sockets. Obtained by ***listening*** on an address.
+2. Connection sockets. Obtained by ***accpting*** a client connection from a listening socket.
+
+The relevent syscalls on Linux:
+```syscall
+bind()
+```
+- configure the listening address of a socket
+
+```syscall
+listening()
+```
+- make the socket a listening socket
+
+```syscall
+accept()
+```
+
+- return a client connection socket, when available
