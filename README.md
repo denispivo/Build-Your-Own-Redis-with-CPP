@@ -6,7 +6,7 @@
 
 A socket is a channel for two parties to communicate over a network.
 
-#### TCP and UDP
+### TCP and UDP
 
 TCP:
 - is byte-stream-based
@@ -17,7 +17,7 @@ UDP:
 - is packed-based
 - a packet is a message of a given size
 
-#### TCP/IP
+### TCP/IP
 
 Layers of Protocols:
 - network protocols have different layers, the higher layer is dependent on the lower one
@@ -38,7 +38,7 @@ bottom
     - the receiver´s address
     - the message data
 
-#### Socker Primitives
+### Socker Primitives
 
 Applications Refer to Sockets
 
@@ -52,5 +52,5 @@ socket()
 - used to create a communication channel
 - the handle must be closed when you´re done to free the associated resources on the OS side
 
-#### Listening Socket & Connection Socket
+### Listening Socket & Connection Socket
 
