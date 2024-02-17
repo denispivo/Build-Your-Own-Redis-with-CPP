@@ -91,7 +91,7 @@ while True:
 ### Read and Write
 
 |Reading 	|Writing 	|Description                                    |
-|-----------|-----------|-----------------------------------------------|
+|:---------:|:---------:|:---------------------------------------------:|
 |read 	    |write 	    |Read/write with a single continuous buffer.    |
 |readv 	    |writev 	|Multiple Read/write in 1 syscall.              |
 |recv 	    |send 	    |Has an extra flag.                             |
