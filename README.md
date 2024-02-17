@@ -2,6 +2,8 @@
 
 ### learned with / got information from this [book](https://build-your-own.org/redis/)
 
+1. [Socket Programming Concepts](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#socket-programming-concepts)
+
 ## Socket Programming Concepts
 
 ### What is a Socket?
@@ -40,7 +42,7 @@ bottom
     - the receiver´s address
     - the message data
 
-### Socker Primitives
+### Socket Primitives
 
 Applications Refer to Sockets
 
