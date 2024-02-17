@@ -2,7 +2,9 @@
 
 ### learned with / got information from this [book](https://build-your-own.org/redis/)
 
-#### What is a Socket?
+## Socket Programming Concepts
+
+### What is a Socket?
 
 A socket is a channel for two parties to communicate over a network.
 
@@ -98,3 +100,36 @@ while True:
 |recvfrom 	|sendto 	|Also get/set the remote address (packet-based).|
 |recvmsg 	|sendmsg 	|readv/writev with more flags and controls.     |
 |recvmmsg 	|sendmmsg 	|Multiple recvmsg/sendmmsg in 1 syscall.        |
+
+- **read()** and **write()** are the most basic interfaces
+- the rest are for additional controls and optimization
+
+### Connect From a Client
+
+```syscall
+connect()
+```
+- is for initiating a TCP connection from the client side
+
+Pseudo code:
+```pseudo-code
+fd = socket()
+connect(fd, address)
+do_something_with(fd)
+close(fd)
+```
+
+The type of a socket (listening or connection) is determined after the **listen()** or **connect()** syscall.
+
+### Summary
+
+- Listening socket:
+    - **bind()** and **lsiten()**
+    - **accept()**
+    - **close()**
+- Using a socket:
+    - **read()**
+    - **write()**
+    - **close()**
+- Create a connection:
+    - **connect()**
