@@ -90,12 +90,11 @@ while True:
 
 ### Read and Write
 
-```table
-Reading 	Writing 	Description
-read 	    write 	    Read/write with a single continuous buffer.
-readv 	    writev 	    Multiple Read/write in 1 syscall.
-recv 	    send 	    Has an extra flag.
-recvfrom 	sendto 	    Also get/set the remote address (packet-based).
-recvmsg 	sendmsg 	readv/writev with more flags and controls.
-recvmmsg 	sendmmsg 	Multiple recvmsg/sendmmsg in 1 syscall.
-```
+|Reading 	|Writing 	|Description                                    |
+|-----------|-----------|-----------------------------------------------|
+|read 	    |write 	    |Read/write with a single continuous buffer.    |
+|readv 	    |writev 	|Multiple Read/write in 1 syscall.              |
+|recv 	    |send 	    |Has an extra flag.                             |
+|recvfrom 	|sendto 	|Also get/set the remote address (packet-based).|
+|recvmsg 	|sendmsg 	|readv/writev with more flags and controls.     |
+|recvmmsg 	|sendmmsg 	|Multiple recvmsg/sendmmsg in 1 syscall.        |
