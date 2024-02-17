@@ -61,6 +61,7 @@ A TCP server listens on a particular address (IP + port) and accepts client conn
 2. Connection sockets. Obtained by ***accpting*** a client connection from a listening socket.
 
 The relevent syscalls on Linux:
+
 ```syscall
 bind()
 ```
@@ -74,5 +75,25 @@ listening()
 ```syscall
 accept()
 ```
-
 - return a client connection socket, when available
+
+Pseudo code that explains the typical workflow of a server:
+```psuedo-code
+fd = socket()
+bind(fd, address)
+listen(fd)
+while True:
+    conn_fd = accept(fd)
+    do_something_with(conn_fd)
+    close(conn_fd)
+```
+
+### Read and Write
+
+Reading 	Writing 	Description
+read 	    write 	    Read/write with a single continuous buffer.
+readv 	    writev 	    Multiple Read/write in 1 syscall.
+recv 	    send 	    Has an extra flag.
+recvfrom 	sendto 	    Also get/set the remote address (packet-based).
+recvmsg 	sendmsg 	readv/writev with more flags and controls.
+recvmmsg 	sendmmsg 	Multiple recvmsg/sendmmsg in 1 syscall.
