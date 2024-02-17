@@ -133,3 +133,5 @@ The type of a socket (listening or connection) is determined after the **listen(
     - **close()**
 - Create a connection:
     - **connect()**
+
+[back to the top](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#client-sided)
