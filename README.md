@@ -4,6 +4,8 @@
 
 1. [Socket Programming Concepts](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#socket-programming-concepts)
 
+2. [TCP Server and Client](https://github.com/denispivo/Build-Your-Own-Redis-with-CPP?tab=readme-ov-file#tcp-server-and-client)
+
 ## Socket Programming Concepts
 
 ### What is a Socket?
