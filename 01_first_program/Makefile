@@ -4,10 +4,10 @@ CXX_FLAGS := -std=c++17 -Wall -Wextra -O2 -g
 
 all: client.exe server.exe
 
-client.exe: 03_client.cpp
+client.exe: client.cpp
 	$(CXX) $(CXX_FLAGS) $^ -o $@
 
-server.exe: 03_server.cpp
+server.exe: server.cpp
 	$(CXX) $(CXX_FLAGS) $^ -o $@
 
 clean:
