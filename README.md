@@ -232,7 +232,7 @@ if (rv) {
 - after the **listen()** syscall the OS will automatically handle TCP handshakes and place established connections in queue
 - retrieve them via **accept()**
 - **backlog** argument is the size of the queue, here **SOMAXCONN**
-    - **SOMAXCONN** is defined ad 128 on Linux
+    - **SOMAXCONN** is defined as 128 on Linux
 
 #### Step 5: Accept Connections
 
