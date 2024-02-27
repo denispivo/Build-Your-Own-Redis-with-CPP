@@ -16,7 +16,7 @@ void error(const char* msg) {
 
 void msg(const char* msg) {
 
-    fprintf(stderr, "%s\n", msg)
+    fprintf(stderr, "%s\n", msg);
 
 }
 
