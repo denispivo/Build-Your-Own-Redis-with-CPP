@@ -28,6 +28,22 @@ int main() {
     addr.sin_family = AF_INET;
     addr.sin_port = ntohs(1234);
     addr.sin_addr.s_addr = ntohl(INADDR_LOOPBACK); // 127.0.0.1
+    // bind the address to the socket
+    // rv is there to controll if any error happened
+    int rv = connect(fd, (const sockaddr*)&addr, sizeof(addr));
+    if (rv) {
+        error("connect()");
+    }
+
+    char wbuf[] = "hello";
+    write(fd, wbuf, strlen(wbuf));
+
+    char rbuf[64] = {};
+    ssize_t n = read(fd, rbuf, sizeof(rbuf) - 1);
+    if (n < 0) {
+        error("read()");
+    }
+    printf("server says: %s\n", rbuf);
 
     close(fd);
 
